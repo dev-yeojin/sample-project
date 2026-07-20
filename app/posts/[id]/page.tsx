@@ -60,10 +60,7 @@ export default async function PostDetailPage({ params }: Props) {
    * 반대로 값을 쓰지 않는 목록 페이지에서는 prefetchQuery가 더 낫다 —
    * 외부 API가 죽어도 페이지는 뜨고, 브라우저가 프록시로 재시도하기 때문이다.
    */
-  const post = await queryClient.fetchQuery({
-    queryKey: postKeys.detail(id),
-    queryFn: () => getPost(id, "dynamic"),
-  });
+  const post = await queryClient.fetchQuery(postQueryOptionsServer(id));
 
   if (!post) {
     notFound();

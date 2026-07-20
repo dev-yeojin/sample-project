@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { usePost } from '@/lib/queries/posts.hooks';
+import { usePost } from "@/lib/queries/posts.hooks";
 
 /**
  * ────────────────────────────────────────────────────────────
@@ -15,7 +15,15 @@ import { usePost } from '@/lib/queries/posts.hooks';
  * ────────────────────────────────────────────────────────────
  */
 export default function PostDetailClient({ id }: { id: string }) {
-  const { data: post, isPending, isError, error, isFetching, refetch, dataUpdatedAt } = usePost(id);
+  const {
+    data: post,
+    isPending,
+    isError,
+    error,
+    isFetching,
+    refetch,
+    dataUpdatedAt,
+  } = usePost(id);
 
   if (isPending) {
     return (
@@ -42,16 +50,18 @@ export default function PostDetailClient({ id }: { id: string }) {
           <span className="rq-bar__label">캐시에 데이터가 채워진 시각</span>
           <strong className="rq-bar__value">
             {/* 서버/브라우저 타임존이 달라도 결과가 같도록 고정 (hydration mismatch 방지) */}
-            {new Date(dataUpdatedAt).toLocaleTimeString('ko-KR', {
+            {new Date(dataUpdatedAt).toLocaleTimeString("ko-KR", {
               hour12: false,
-              timeZone: 'Asia/Seoul',
+              timeZone: "Asia/Seoul",
             })}
           </strong>
         </div>
 
         <div className="rq-bar__stat">
           <span className="rq-bar__label">배경 갱신(isFetching)</span>
-          <strong className="rq-bar__value">{isFetching ? '요청 중…' : '멈춤'}</strong>
+          <strong className="rq-bar__value">
+            {isFetching ? "요청 중…" : "멈춤"}
+          </strong>
         </div>
 
         <button type="button" className="rq-bar__btn" onClick={() => refetch()}>
