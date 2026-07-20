@@ -1,0 +1,10 @@
+
+server component -> getPost
+client component -> route.ts 
+route.ts -> getPost
+
+
+fetcher
+
+server-fetcher (BE를 찌르는 fetcher) - header에 토큰 넣어주기
+client-fetcher (FE가 route.ts를 찌르는 fetcher)
